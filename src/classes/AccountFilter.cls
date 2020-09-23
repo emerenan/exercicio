@@ -1,16 +1,22 @@
 /*
 *@author - Emerson
 */
-public class AccountFilter {
+public with sharing class AccountFilter {
 
-    public List<Account> filterByRevenue (List<Account> newAccounts, Map<Id,Account> oldAccounts) {
+    public List<Account> filterByRevenue (List<Account> newAccounts) {
 
         List<Account> filteredAccounts = new List<Account>();
+
+        String category;
 
         for (Account account : newAccounts) {
 
             if (account.AnnualRevenue > 1000000) {
-                continue;
+                category = 'Premium';
+                account.Category__c = category;
+            }else {
+                category = 'Standard';
+                account.Category__c = category;
             }
 
             filteredAccounts.add(account);
